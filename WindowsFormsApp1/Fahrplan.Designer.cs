@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.standort = new System.Windows.Forms.ComboBox();
-            this.zielort = new System.Windows.Forms.ComboBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Fahrplan));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.abfahrt = new System.Windows.Forms.Button();
@@ -41,25 +40,13 @@
             this.verbindungen = new System.Windows.Forms.ListBox();
             this.minuten = new System.Windows.Forms.NumericUpDown();
             this.stunden = new System.Windows.Forms.NumericUpDown();
+            this.wechsel = new System.Windows.Forms.PictureBox();
+            this.zielort = new System.Windows.Forms.TextBox();
+            this.standort = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.minuten)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stunden)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wechsel)).BeginInit();
             this.SuspendLayout();
-            // 
-            // standort
-            // 
-            this.standort.FormattingEnabled = true;
-            this.standort.Location = new System.Drawing.Point(25, 33);
-            this.standort.Name = "standort";
-            this.standort.Size = new System.Drawing.Size(529, 21);
-            this.standort.TabIndex = 0;
-            // 
-            // zielort
-            // 
-            this.zielort.FormattingEnabled = true;
-            this.zielort.Location = new System.Drawing.Point(25, 81);
-            this.zielort.Name = "zielort";
-            this.zielort.Size = new System.Drawing.Size(529, 21);
-            this.zielort.TabIndex = 0;
             // 
             // label1
             // 
@@ -106,7 +93,7 @@
             // 
             // suchen
             // 
-            this.suchen.Location = new System.Drawing.Point(479, 118);
+            this.suchen.Location = new System.Drawing.Point(421, 118);
             this.suchen.Name = "suchen";
             this.suchen.Size = new System.Drawing.Size(75, 23);
             this.suchen.TabIndex = 4;
@@ -154,11 +141,43 @@
             this.stunden.Size = new System.Drawing.Size(46, 20);
             this.stunden.TabIndex = 9;
             // 
+            // wechsel
+            // 
+            this.wechsel.Image = ((System.Drawing.Image)(resources.GetObject("wechsel.Image")));
+            this.wechsel.Location = new System.Drawing.Point(502, 46);
+            this.wechsel.Name = "wechsel";
+            this.wechsel.Size = new System.Drawing.Size(56, 56);
+            this.wechsel.TabIndex = 10;
+            this.wechsel.TabStop = false;
+            this.wechsel.Click += new System.EventHandler(this.wechsel_Click);
+            // 
+            // zielort
+            // 
+            this.zielort.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.zielort.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.zielort.Location = new System.Drawing.Point(25, 81);
+            this.zielort.Name = "zielort";
+            this.zielort.Size = new System.Drawing.Size(471, 20);
+            this.zielort.TabIndex = 11;
+            this.zielort.TextChanged += new System.EventHandler(this.zielort_TextChanged);
+            // 
+            // standort
+            // 
+            this.standort.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.standort.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.standort.Location = new System.Drawing.Point(25, 33);
+            this.standort.Name = "standort";
+            this.standort.Size = new System.Drawing.Size(471, 20);
+            this.standort.TabIndex = 11;
+            this.standort.TextChanged += new System.EventHandler(this.standort_TextChanged);
+            // 
             // Fahrplan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1261, 681);
+            this.Controls.Add(this.zielort);
+            this.Controls.Add(this.standort);
             this.Controls.Add(this.stunden);
             this.Controls.Add(this.minuten);
             this.Controls.Add(this.verbindungen);
@@ -170,21 +189,20 @@
             this.Controls.Add(this.abfahrt);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.zielort);
-            this.Controls.Add(this.standort);
+            this.Controls.Add(this.wechsel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Fahrplan";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Fahrplan_Load);
             ((System.ComponentModel.ISupportInitialize)(this.minuten)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stunden)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wechsel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ComboBox standort;
-        private System.Windows.Forms.ComboBox zielort;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button abfahrt;
@@ -196,6 +214,9 @@
         private System.Windows.Forms.ListBox verbindungen;
         private System.Windows.Forms.NumericUpDown minuten;
         private System.Windows.Forms.NumericUpDown stunden;
+        private System.Windows.Forms.PictureBox wechsel;
+        private System.Windows.Forms.TextBox zielort;
+        private System.Windows.Forms.TextBox standort;
     }
 }
 
