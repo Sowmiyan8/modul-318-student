@@ -37,19 +37,17 @@
             this.datum = new System.Windows.Forms.DateTimePicker();
             this.suchen = new System.Windows.Forms.Button();
             this.vs = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.verbindungen = new System.Windows.Forms.ListBox();
-            this.minuten = new System.Windows.Forms.NumericUpDown();
-            this.stunden = new System.Windows.Forms.NumericUpDown();
             this.wechsel = new System.Windows.Forms.PictureBox();
             this.standort = new System.Windows.Forms.ComboBox();
             this.zielort = new System.Windows.Forms.ComboBox();
+            this.verbindungen = new System.Windows.Forms.ListView();
+            this.time = new System.Windows.Forms.TextBox();
             this.stationsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.stationsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.stationsBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.stationBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.minuten)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stunden)).BeginInit();
+            this.map2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.wechsel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stationsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stationsBindingSource1)).BeginInit();
@@ -102,7 +100,7 @@
             // 
             // suchen
             // 
-            this.suchen.Location = new System.Drawing.Point(421, 118);
+            this.suchen.Location = new System.Drawing.Point(421, 117);
             this.suchen.Name = "suchen";
             this.suchen.Size = new System.Drawing.Size(75, 23);
             this.suchen.TabIndex = 4;
@@ -118,37 +116,6 @@
             this.vs.Size = new System.Drawing.Size(73, 13);
             this.vs.TabIndex = 6;
             this.vs.Text = "Verbindungen";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(341, 123);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(10, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = ":";
-            // 
-            // verbindungen
-            // 
-            this.verbindungen.FormattingEnabled = true;
-            this.verbindungen.Location = new System.Drawing.Point(25, 188);
-            this.verbindungen.Name = "verbindungen";
-            this.verbindungen.Size = new System.Drawing.Size(529, 420);
-            this.verbindungen.TabIndex = 8;
-            // 
-            // minuten
-            // 
-            this.minuten.Location = new System.Drawing.Point(357, 121);
-            this.minuten.Name = "minuten";
-            this.minuten.Size = new System.Drawing.Size(46, 20);
-            this.minuten.TabIndex = 9;
-            // 
-            // stunden
-            // 
-            this.stunden.Location = new System.Drawing.Point(289, 121);
-            this.stunden.Name = "stunden";
-            this.stunden.Size = new System.Drawing.Size(46, 20);
-            this.stunden.TabIndex = 9;
             // 
             // wechsel
             // 
@@ -183,6 +150,30 @@
             this.zielort.TabIndex = 12;
             this.zielort.KeyDown += new System.Windows.Forms.KeyEventHandler(this.zielort_KeyDown);
             // 
+            // verbindungen
+            // 
+            this.verbindungen.Alignment = System.Windows.Forms.ListViewAlignment.Default;
+            this.verbindungen.AutoArrange = false;
+            this.verbindungen.FullRowSelect = true;
+            this.verbindungen.HideSelection = false;
+            this.verbindungen.Location = new System.Drawing.Point(25, 197);
+            this.verbindungen.Name = "verbindungen";
+            this.verbindungen.Size = new System.Drawing.Size(471, 361);
+            this.verbindungen.TabIndex = 15;
+            this.verbindungen.TabStop = false;
+            this.verbindungen.UseCompatibleStateImageBehavior = false;
+            this.verbindungen.View = System.Windows.Forms.View.Details;
+            this.verbindungen.SelectedIndexChanged += new System.EventHandler(this.verbindungen_SelectedIndexChanged);
+            // 
+            // time
+            // 
+            this.time.Location = new System.Drawing.Point(289, 120);
+            this.time.Name = "time";
+            this.time.Size = new System.Drawing.Size(77, 20);
+            this.time.TabIndex = 16;
+            this.time.Text = "zeit SS:mm";
+            this.time.TextChanged += new System.EventHandler(this.time_TextChanged);
+            // 
             // stationsBindingSource
             // 
             this.stationsBindingSource.DataSource = typeof(SwissTransport.Stations);
@@ -199,18 +190,38 @@
             // 
             this.stationBindingSource.DataSource = typeof(SwissTransport.Station);
             // 
+            // map2
+            // 
+            this.map2.Location = new System.Drawing.Point(440, 52);
+            this.map2.Name = "map2";
+            this.map2.Size = new System.Drawing.Size(56, 20);
+            this.map2.TabIndex = 4;
+            this.map2.Text = "Map";
+            this.map2.UseVisualStyleBackColor = true;
+            this.map2.Click += new System.EventHandler(this.buttonmap);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(440, 97);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(56, 20);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Map";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.buttonmap2);
+            // 
             // Fahrplan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1261, 681);
+            this.ClientSize = new System.Drawing.Size(834, 681);
+            this.Controls.Add(this.time);
+            this.Controls.Add(this.verbindungen);
             this.Controls.Add(this.zielort);
             this.Controls.Add(this.standort);
-            this.Controls.Add(this.stunden);
-            this.Controls.Add(this.minuten);
-            this.Controls.Add(this.verbindungen);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.vs);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.map2);
             this.Controls.Add(this.suchen);
             this.Controls.Add(this.datum);
             this.Controls.Add(this.ankunft);
@@ -220,10 +231,8 @@
             this.Controls.Add(this.wechsel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Fahrplan";
-            this.Text = "Form1";
+            this.Text = "Fahrplan ";
             this.Load += new System.EventHandler(this.Fahrplan_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.minuten)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stunden)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.wechsel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stationsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stationsBindingSource1)).EndInit();
@@ -242,10 +251,6 @@
         private System.Windows.Forms.DateTimePicker datum;
         private System.Windows.Forms.Button suchen;
         private System.Windows.Forms.Label vs;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ListBox verbindungen;
-        private System.Windows.Forms.NumericUpDown minuten;
-        private System.Windows.Forms.NumericUpDown stunden;
         private System.Windows.Forms.PictureBox wechsel;
         private System.Windows.Forms.ComboBox standort;
         private System.Windows.Forms.ComboBox zielort;
@@ -253,6 +258,10 @@
         private System.Windows.Forms.BindingSource stationsBindingSource1;
         private System.Windows.Forms.BindingSource stationsBindingSource2;
         private System.Windows.Forms.BindingSource stationBindingSource;
+        private System.Windows.Forms.ListView verbindungen;
+        private System.Windows.Forms.TextBox time;
+        private System.Windows.Forms.Button map2;
+        private System.Windows.Forms.Button button1;
     }
 }
 
