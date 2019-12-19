@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Fahrplan));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -41,11 +42,19 @@
             this.minuten = new System.Windows.Forms.NumericUpDown();
             this.stunden = new System.Windows.Forms.NumericUpDown();
             this.wechsel = new System.Windows.Forms.PictureBox();
-            this.zielort = new System.Windows.Forms.TextBox();
-            this.standort = new System.Windows.Forms.TextBox();
+            this.standort = new System.Windows.Forms.ComboBox();
+            this.zielort = new System.Windows.Forms.ComboBox();
+            this.stationsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.stationsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.stationsBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.stationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.minuten)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stunden)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.wechsel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stationsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stationsBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stationsBindingSource2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stationBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -151,25 +160,44 @@
             this.wechsel.TabStop = false;
             this.wechsel.Click += new System.EventHandler(this.wechsel_Click);
             // 
-            // zielort
-            // 
-            this.zielort.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.zielort.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.zielort.Location = new System.Drawing.Point(25, 81);
-            this.zielort.Name = "zielort";
-            this.zielort.Size = new System.Drawing.Size(471, 20);
-            this.zielort.TabIndex = 11;
-            this.zielort.TextChanged += new System.EventHandler(this.zielort_TextChanged);
-            // 
             // standort
             // 
             this.standort.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.standort.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.standort.FormattingEnabled = true;
             this.standort.Location = new System.Drawing.Point(25, 33);
             this.standort.Name = "standort";
-            this.standort.Size = new System.Drawing.Size(471, 20);
-            this.standort.TabIndex = 11;
-            this.standort.TextChanged += new System.EventHandler(this.standort_TextChanged);
+            this.standort.Size = new System.Drawing.Size(471, 21);
+            this.standort.TabIndex = 12;
+            this.standort.SelectedIndexChanged += new System.EventHandler(this.standort_SelectedIndexChanged);
+            this.standort.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.standort_KeyPress);
+            // 
+            // zielort
+            // 
+            this.zielort.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.zielort.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.zielort.FormattingEnabled = true;
+            this.zielort.Location = new System.Drawing.Point(25, 81);
+            this.zielort.Name = "zielort";
+            this.zielort.Size = new System.Drawing.Size(471, 21);
+            this.zielort.TabIndex = 12;
+            this.zielort.KeyDown += new System.Windows.Forms.KeyEventHandler(this.zielort_KeyDown);
+            // 
+            // stationsBindingSource
+            // 
+            this.stationsBindingSource.DataSource = typeof(SwissTransport.Stations);
+            // 
+            // stationsBindingSource1
+            // 
+            this.stationsBindingSource1.DataSource = typeof(SwissTransport.Stations);
+            // 
+            // stationsBindingSource2
+            // 
+            this.stationsBindingSource2.DataSource = typeof(SwissTransport.Stations);
+            // 
+            // stationBindingSource
+            // 
+            this.stationBindingSource.DataSource = typeof(SwissTransport.Station);
             // 
             // Fahrplan
             // 
@@ -197,6 +225,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.minuten)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stunden)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.wechsel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stationsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stationsBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stationsBindingSource2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stationBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -215,8 +247,12 @@
         private System.Windows.Forms.NumericUpDown minuten;
         private System.Windows.Forms.NumericUpDown stunden;
         private System.Windows.Forms.PictureBox wechsel;
-        private System.Windows.Forms.TextBox zielort;
-        private System.Windows.Forms.TextBox standort;
+        private System.Windows.Forms.ComboBox standort;
+        private System.Windows.Forms.ComboBox zielort;
+        private System.Windows.Forms.BindingSource stationsBindingSource;
+        private System.Windows.Forms.BindingSource stationsBindingSource1;
+        private System.Windows.Forms.BindingSource stationsBindingSource2;
+        private System.Windows.Forms.BindingSource stationBindingSource;
     }
 }
 
