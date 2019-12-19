@@ -19,59 +19,50 @@ namespace WindowsFormsApp1
         Transport m_transport = new Transport();
 
 
+        #region Methoden
 
         public Fahrplan()
         {
             //making out of text time 
             InitializeComponent();
             time.Text = DateTime.Now.ToString("HH:mm");
+
         }
+
+        private ListViewItem Departure(StationBoard stationBoard)
+        {
+            string[] abfahrten = { stationBoard.Stop.Departure.ToString().Substring(11, 5), stationBoard.To, stationBoard.Category + stationBoard.Number };
+            return new ListViewItem(abfahrten);
+        }
+        // getting Coordinates
         public bool Map(string station)
         {
-            if (string.IsNullOrEmpty(station)) return false;
+            if (string.IsNullOrEmpty(station)) 
+            return false;
 
             Coordinate statoinCoord = m_transport.GetStations(station).StationList.ElementAt(0).Coordinate;
             double x = statoinCoord.XCoordinate;
             double y = statoinCoord.YCoordinate;
+            // changing , to . so Google gets it
             String b = Convert.ToString(x).Replace(',', '.');
             String a = Convert.ToString(y).Replace(',', '.');
 
 
             System.Diagnostics.Process.Start("http://www.google.ch/maps/place/" + b + "," + a);
             return true;
+         
+        
         }
 
-        private ListViewItem ShowConnections(Connection connection)
+        private ListViewItem Connections(Connection connection)
         {
             string[] connections = { connection.From.Departure.ToString().Substring(0, 10), connection.From.Departure.ToString().Substring(11, 5), connection.From.Station.Name, connection.To.Station.Name, connection.To.Arrival.ToString().Substring(11, 5), connection.Duration.Substring(3, 5), connection.From.Platform };
             return new ListViewItem(connections);
         }
 
-        // Map Coordinates
-        private string Xyz(string Station)
-        {
-            var xyz = m_transport.GetStations(Station).StationList.FirstOrDefault(x => Equals(x.Name, Station));
-            if (xyz != null)
-            {
-                string x = Convert.ToString(xyz.Coordinate.XCoordinate);
-                string y = Convert.ToString(xyz.Coordinate.YCoordinate);
-                string amalgamatedCoordinates = x + "/" + y;
-                return amalgamatedCoordinates;
-            }
-            else
-                return "ERROR";
-        }
+           // making a table or grid in List view
 
-
-
-        #region Loscht
-        void loscht()
-        {
-
-        }
-        #endregion Loscht
-
-        void fill()
+        void Fill()
         {
             int width = (verbindungen.Width / 4);
             verbindungen.Columns.Add("Datum", width);
@@ -79,6 +70,14 @@ namespace WindowsFormsApp1
             verbindungen.Columns.Add("Von", width);
             verbindungen.Columns.Add("Nach", width);
         }
+        void FillDeparture()
+        {
+            int width = (abfahrten.Width / 3);
+            abfahrten.Columns.Add("Nach", width);
+            abfahrten.Columns.Add("Gleis", width);
+            abfahrten.Columns.Add("Abfahrtstafel", width);
+        }
+
 
         // validating if time is correct
         private bool CheckTime(TextBox textBox)
@@ -94,6 +93,7 @@ namespace WindowsFormsApp1
             return returnValue;
         }
 
+        //validating if Station is correct
         private bool CheckStations(ComboBox comboBox)
         {
             bool returnValue = true;
@@ -104,6 +104,7 @@ namespace WindowsFormsApp1
             return returnValue;
         }
 
+        // list of Towns / City
         void SuggestionList(ref ComboBox comboBox)
         {
             string searchText = comboBox.Text;
@@ -122,7 +123,12 @@ namespace WindowsFormsApp1
         }
 
 
+        #endregion Methoden
 
+        
+        #region Applicaction
+
+        // filling information to viwelist
 
         private void suchen_Click(object sender, EventArgs e)
 
@@ -139,7 +145,7 @@ namespace WindowsFormsApp1
 
                 foreach (global::SwissTransport.Connection connection in m_transport.GetConnections(from, to, Date, time.Text).ConnectionList)
                 {
-                    verbindungen.Items.Add(ShowConnections(connection));
+                    verbindungen.Items.Add(Connections(connection));
                 }
             }
             if (!CheckTime(time))
@@ -156,23 +162,15 @@ namespace WindowsFormsApp1
             }
         }
 
-
-
-
-
-
-
-        private void verbindungen_Click(object sender, EventArgs e)
-        {
-
-
-
-        }
+        // filling grid
 
         private void Fahrplan_Load(object sender, EventArgs e)
         {
-            fill();
+            Fill();
+            FillDeparture();
         }
+
+        // Changing from and to
 
         private void wechsel_Click(object sender, EventArgs e)
         {
@@ -184,12 +182,7 @@ namespace WindowsFormsApp1
 
 
 
-
-
-        private void standort_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+        // Suggestion on klick
 
         private void standort_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -205,19 +198,6 @@ namespace WindowsFormsApp1
 
 
 
-        private void verbindungen_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-
-        }
-
-
-
-        private void time_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
 
         // Map Buttons
 
@@ -230,7 +210,26 @@ namespace WindowsFormsApp1
         {
             Map(zielort.Text);
         }
+
+        private void abfahrtbutton(object sender, EventArgs e)
+        {
+            abfahrten.Items.Clear();
+            if (CheckStations(standort))
+            {
+                foreach (StationBoard stationBoard in m_transport.GetStationBoard(standort.Text, string.Empty).Entries)
+                {
+                    abfahrten.Items.Add(Departure(stationBoard));
+                }
+            }
+            else
+            {
+                MessageBox.Show("Bitte überprüfen sie ob ein standort eingegeben haben");
+            }
+
+        }
+
     }
+            #endregion Applicaction
 
 }
 

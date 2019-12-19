@@ -48,6 +48,9 @@
             this.stationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.map2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.abfahrten = new System.Windows.Forms.ListView();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.wechsel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stationsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stationsBindingSource1)).BeginInit();
@@ -111,7 +114,7 @@
             // vs
             // 
             this.vs.AutoSize = true;
-            this.vs.Location = new System.Drawing.Point(23, 162);
+            this.vs.Location = new System.Drawing.Point(22, 181);
             this.vs.Name = "vs";
             this.vs.Size = new System.Drawing.Size(73, 13);
             this.vs.TabIndex = 6;
@@ -120,9 +123,9 @@
             // wechsel
             // 
             this.wechsel.Image = ((System.Drawing.Image)(resources.GetObject("wechsel.Image")));
-            this.wechsel.Location = new System.Drawing.Point(502, 46);
+            this.wechsel.Location = new System.Drawing.Point(491, 46);
             this.wechsel.Name = "wechsel";
-            this.wechsel.Size = new System.Drawing.Size(56, 56);
+            this.wechsel.Size = new System.Drawing.Size(49, 56);
             this.wechsel.TabIndex = 10;
             this.wechsel.TabStop = false;
             this.wechsel.Click += new System.EventHandler(this.wechsel_Click);
@@ -136,7 +139,6 @@
             this.standort.Name = "standort";
             this.standort.Size = new System.Drawing.Size(471, 21);
             this.standort.TabIndex = 12;
-            this.standort.SelectedIndexChanged += new System.EventHandler(this.standort_SelectedIndexChanged);
             this.standort.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.standort_KeyPress);
             // 
             // zielort
@@ -163,7 +165,6 @@
             this.verbindungen.TabStop = false;
             this.verbindungen.UseCompatibleStateImageBehavior = false;
             this.verbindungen.View = System.Windows.Forms.View.Details;
-            this.verbindungen.SelectedIndexChanged += new System.EventHandler(this.verbindungen_SelectedIndexChanged);
             // 
             // time
             // 
@@ -172,7 +173,6 @@
             this.time.Size = new System.Drawing.Size(77, 20);
             this.time.TabIndex = 16;
             this.time.Text = "zeit SS:mm";
-            this.time.TextChanged += new System.EventHandler(this.time_TextChanged);
             // 
             // stationsBindingSource
             // 
@@ -210,17 +210,53 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.buttonmap2);
             // 
+            // abfahrten
+            // 
+            this.abfahrten.Alignment = System.Windows.Forms.ListViewAlignment.Default;
+            this.abfahrten.AutoArrange = false;
+            this.abfahrten.FullRowSelect = true;
+            this.abfahrten.HideSelection = false;
+            this.abfahrten.Location = new System.Drawing.Point(560, 46);
+            this.abfahrten.Name = "abfahrten";
+            this.abfahrten.Size = new System.Drawing.Size(283, 509);
+            this.abfahrten.TabIndex = 15;
+            this.abfahrten.TabStop = false;
+            this.abfahrten.UseCompatibleStateImageBehavior = false;
+            this.abfahrten.View = System.Windows.Forms.View.Details;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(577, 17);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(69, 13);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "Abfahrtstabel";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(377, 52);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(68, 20);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Abfahrten";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.abfahrtbutton);
+            // 
             // Fahrplan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(834, 681);
+            this.ClientSize = new System.Drawing.Size(872, 681);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.time);
+            this.Controls.Add(this.abfahrten);
             this.Controls.Add(this.verbindungen);
             this.Controls.Add(this.zielort);
             this.Controls.Add(this.standort);
             this.Controls.Add(this.vs);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.map2);
             this.Controls.Add(this.suchen);
             this.Controls.Add(this.datum);
@@ -262,6 +298,9 @@
         private System.Windows.Forms.TextBox time;
         private System.Windows.Forms.Button map2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListView abfahrten;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button2;
     }
 }
 
