@@ -32,8 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Fahrplan));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.abfahrt = new System.Windows.Forms.Button();
-            this.ankunft = new System.Windows.Forms.Button();
             this.datum = new System.Windows.Forms.DateTimePicker();
             this.suchen = new System.Windows.Forms.Button();
             this.vs = new System.Windows.Forms.Label();
@@ -42,15 +40,16 @@
             this.zielort = new System.Windows.Forms.ComboBox();
             this.verbindungen = new System.Windows.Forms.ListView();
             this.time = new System.Windows.Forms.TextBox();
-            this.stationsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.stationsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.stationsBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.stationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.map2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.abfahrten = new System.Windows.Forms.ListView();
             this.label3 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.stationsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.stationsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.stationsBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.stationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.wechsel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stationsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stationsBindingSource1)).BeginInit();
@@ -76,34 +75,16 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Startort";
             // 
-            // abfahrt
-            // 
-            this.abfahrt.Location = new System.Drawing.Point(60, 118);
-            this.abfahrt.Name = "abfahrt";
-            this.abfahrt.Size = new System.Drawing.Size(38, 23);
-            this.abfahrt.TabIndex = 2;
-            this.abfahrt.Text = "AB";
-            this.abfahrt.UseVisualStyleBackColor = true;
-            // 
-            // ankunft
-            // 
-            this.ankunft.Location = new System.Drawing.Point(25, 118);
-            this.ankunft.Name = "ankunft";
-            this.ankunft.Size = new System.Drawing.Size(38, 23);
-            this.ankunft.TabIndex = 2;
-            this.ankunft.Text = "AN";
-            this.ankunft.UseVisualStyleBackColor = true;
-            // 
             // datum
             // 
-            this.datum.Location = new System.Drawing.Point(104, 121);
+            this.datum.Location = new System.Drawing.Point(25, 120);
             this.datum.Name = "datum";
             this.datum.Size = new System.Drawing.Size(179, 20);
             this.datum.TabIndex = 3;
             // 
             // suchen
             // 
-            this.suchen.Location = new System.Drawing.Point(421, 117);
+            this.suchen.Location = new System.Drawing.Point(295, 117);
             this.suchen.Name = "suchen";
             this.suchen.Size = new System.Drawing.Size(75, 23);
             this.suchen.TabIndex = 4;
@@ -139,6 +120,7 @@
             this.standort.Name = "standort";
             this.standort.Size = new System.Drawing.Size(471, 21);
             this.standort.TabIndex = 12;
+
             this.standort.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.standort_KeyPress);
             // 
             // zielort
@@ -150,6 +132,7 @@
             this.zielort.Name = "zielort";
             this.zielort.Size = new System.Drawing.Size(471, 21);
             this.zielort.TabIndex = 12;
+
             this.zielort.KeyDown += new System.Windows.Forms.KeyEventHandler(this.zielort_KeyDown);
             // 
             // verbindungen
@@ -168,27 +151,11 @@
             // 
             // time
             // 
-            this.time.Location = new System.Drawing.Point(289, 120);
+            this.time.Location = new System.Drawing.Point(201, 120);
             this.time.Name = "time";
             this.time.Size = new System.Drawing.Size(77, 20);
             this.time.TabIndex = 16;
             this.time.Text = "zeit SS:mm";
-            // 
-            // stationsBindingSource
-            // 
-            this.stationsBindingSource.DataSource = typeof(SwissTransport.Stations);
-            // 
-            // stationsBindingSource1
-            // 
-            this.stationsBindingSource1.DataSource = typeof(SwissTransport.Stations);
-            // 
-            // stationsBindingSource2
-            // 
-            this.stationsBindingSource2.DataSource = typeof(SwissTransport.Stations);
-            // 
-            // stationBindingSource
-            // 
-            this.stationBindingSource.DataSource = typeof(SwissTransport.Station);
             // 
             // map2
             // 
@@ -227,7 +194,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(577, 17);
+            this.label3.Location = new System.Drawing.Point(557, 30);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(69, 13);
             this.label3.TabIndex = 17;
@@ -242,6 +209,32 @@
             this.button2.Text = "Abfahrten";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.abfahrtbutton);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(421, 168);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 4;
+            this.button3.Text = "Email";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.mailbtn);
+            // 
+            // stationsBindingSource
+            // 
+            this.stationsBindingSource.DataSource = typeof(SwissTransport.Stations);
+            // 
+            // stationsBindingSource1
+            // 
+            this.stationsBindingSource1.DataSource = typeof(SwissTransport.Stations);
+            // 
+            // stationsBindingSource2
+            // 
+            this.stationsBindingSource2.DataSource = typeof(SwissTransport.Stations);
+            // 
+            // stationBindingSource
+            // 
+            this.stationBindingSource.DataSource = typeof(SwissTransport.Station);
             // 
             // Fahrplan
             // 
@@ -258,10 +251,9 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.map2);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.suchen);
             this.Controls.Add(this.datum);
-            this.Controls.Add(this.ankunft);
-            this.Controls.Add(this.abfahrt);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.wechsel);
@@ -282,8 +274,6 @@
         #endregion
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button abfahrt;
-        private System.Windows.Forms.Button ankunft;
         private System.Windows.Forms.DateTimePicker datum;
         private System.Windows.Forms.Button suchen;
         private System.Windows.Forms.Label vs;
@@ -301,6 +291,7 @@
         private System.Windows.Forms.ListView abfahrten;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }
 

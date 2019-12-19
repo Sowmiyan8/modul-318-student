@@ -16,6 +16,7 @@ namespace WindowsFormsApp1
 
     public partial class Fahrplan : Form
     {
+        private List<List<String>> Data = new List<List<String>>();
         Transport m_transport = new Transport();
 
 
@@ -108,7 +109,6 @@ namespace WindowsFormsApp1
         void SuggestionList(ref ComboBox comboBox)
         {
             string searchText = comboBox.Text;
-
             if (String.IsNullOrEmpty(searchText)) return;
 
             var stationList = m_transport.GetStations(searchText).StationList;
@@ -227,6 +227,32 @@ namespace WindowsFormsApp1
             }
 
         }
+
+        private void mailbtn(object sender, EventArgs e)
+        {
+            StringBuilder mailBody = new StringBuilder();
+
+            mailBody.Append("<table style='width: 40%;'>");
+            foreach (ColumnHeader row in verbindungen.Columns)
+            {
+                mailBody.AppendFormat("<th>" + row.Text + "</th>");
+            }
+
+            foreach (var rows in Data)
+            {
+                mailBody.Append("<tr>");
+                foreach (string list in rows)
+                {
+                    mailBody.AppendFormat("<td>" + list + "</td>");
+                }
+                mailBody.Append("</tr>");
+            }
+            mailBody.Append("</table>");
+
+            Form1 mailForm = new Form1(mailBody.ToString());
+            mailForm.ShowDialog();
+        }
+
 
     }
             #endregion Applicaction

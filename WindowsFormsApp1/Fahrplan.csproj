@@ -53,8 +53,17 @@
     <Compile Include="Fahrplan.Designer.cs">
       <DependentUpon>Fahrplan.cs</DependentUpon>
     </Compile>
+    <Compile Include="E-Mail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="E-Mail.Designer.cs">
+      <DependentUpon>E-Mail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="E-Mail.resx">
+      <DependentUpon>E-Mail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Fahrplan.resx">
       <DependentUpon>Fahrplan.cs</DependentUpon>
     </EmbeddedResource>
