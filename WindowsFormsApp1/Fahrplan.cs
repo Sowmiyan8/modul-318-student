@@ -117,9 +117,14 @@ namespace WindowsFormsApp1
             List<String> stationNames = new List<String>();
             foreach (Station station in stationList)
                 stationNames.Add(station.Name);
-
-            comboBox.SafeClearItems();
-            comboBox.Items.AddRange(stationNames.ToArray());
+            try
+            {
+                comboBox.SafeClearItems();
+                comboBox.Items.AddRange(stationNames.ToArray());
+            }
+            catch {
+                MessageBox.Show("Nicht Spammen");
+            }
         }
 
 
@@ -133,32 +138,39 @@ namespace WindowsFormsApp1
         private void suchen_Click(object sender, EventArgs e)
 
         {
-            this.verbindungen.Items.Clear();
-            string from = this.standort.Text;
-            string to = this.zielort.Text;
-
-
-            if (CheckStations(standort) && CheckStations(zielort) && CheckTime(time))
+            try
             {
+                this.verbindungen.Items.Clear();
+                string from = this.standort.Text;
+                string to = this.zielort.Text;
 
-                string Date = datum.Value.Year + "-" + datum.Value.Month + "-" + datum.Value.Day;
 
-                foreach (global::SwissTransport.Connection connection in m_transport.GetConnections(from, to, Date, time.Text).ConnectionList)
+                if (CheckStations(standort) && CheckStations(zielort) && CheckTime(time))
                 {
-                    verbindungen.Items.Add(Connections(connection));
+
+                    string Date = datum.Value.Year + "-" + datum.Value.Month + "-" + datum.Value.Day;
+
+                    foreach (global::SwissTransport.Connection connection in m_transport.GetConnections(from, to, Date, time.Text).ConnectionList)
+                    {
+                        verbindungen.Items.Add(Connections(connection));
+                    }
+                }
+                if (!CheckTime(time))
+                {
+                    MessageBox.Show("Bitte zeit überprüfen");
+                }
+                if (!CheckStations(standort))
+                {
+                    MessageBox.Show("Bitte Standort überprüfen");
+                }
+                if (!CheckStations(zielort))
+                {
+                    MessageBox.Show("Bitte zielort überprüfen");
                 }
             }
-            if (!CheckTime(time))
+            catch
             {
-                MessageBox.Show("Bitte zeit überprüfen");
-            }
-            if (!CheckStations(standort))
-            {
-                MessageBox.Show("Bitte Standort überprüfen");
-            }
-            if (!CheckStations(zielort))
-            {
-                MessageBox.Show("Bitte zielort überprüfen");
+                MessageBox.Show("Fehler");
             }
         }
 

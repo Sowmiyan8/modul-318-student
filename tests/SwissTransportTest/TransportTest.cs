@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace SwissTransport
 {
@@ -15,6 +16,16 @@ namespace SwissTransport
 
             Assert.AreEqual(10, stations.StationList.Count);
         }
+
+        [TestMethod]
+        public void Id()
+        {
+            testee = new Transport();
+            string id = testee.GetStations("Luzern").StationList.ElementAt(0).Id;
+
+            Assert.IsNotNull(id);
+        }
+
 
         [TestMethod]
         public void StationBoard()

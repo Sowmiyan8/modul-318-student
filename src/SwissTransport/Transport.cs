@@ -75,5 +75,10 @@ namespace SwissTransport
             
             return request;
         }
+
+        public Coordinate GetCoordinate(double x, double y)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

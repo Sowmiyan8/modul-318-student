@@ -120,7 +120,6 @@
             this.standort.Name = "standort";
             this.standort.Size = new System.Drawing.Size(471, 21);
             this.standort.TabIndex = 12;
-
             this.standort.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.standort_KeyPress);
             // 
             // zielort
@@ -132,7 +131,6 @@
             this.zielort.Name = "zielort";
             this.zielort.Size = new System.Drawing.Size(471, 21);
             this.zielort.TabIndex = 12;
-
             this.zielort.KeyDown += new System.Windows.Forms.KeyEventHandler(this.zielort_KeyDown);
             // 
             // verbindungen
@@ -259,6 +257,7 @@
             this.Controls.Add(this.wechsel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Fahrplan";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Fahrplan ";
             this.Load += new System.EventHandler(this.Fahrplan_Load);
             ((System.ComponentModel.ISupportInitialize)(this.wechsel)).EndInit();
