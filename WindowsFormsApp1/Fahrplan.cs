@@ -117,14 +117,10 @@ namespace WindowsFormsApp1
             List<String> stationNames = new List<String>();
             foreach (Station station in stationList)
                 stationNames.Add(station.Name);
-            try
-            {
                 comboBox.SafeClearItems();
                 comboBox.Items.AddRange(stationNames.ToArray());
-            }
-            catch {
-                MessageBox.Show("Nicht Spammen");
-            }
+
+
         }
 
 
@@ -198,14 +194,26 @@ namespace WindowsFormsApp1
 
         private void standort_KeyPress(object sender, KeyPressEventArgs e)
         {
-            standort.DroppedDown = true;
-            SuggestionList(ref standort);
+            try
+            {
+                standort.DroppedDown = true;
+                SuggestionList(ref standort);
+            }
+            catch {
+                MessageBox.Show("nicht spammen");
+            }
         }
 
         private void zielort_KeyDown(object sender, KeyEventArgs e)
         {
-            zielort.DroppedDown = true;
-            SuggestionList(ref zielort);
+            try
+            {
+                zielort.DroppedDown = true;
+                SuggestionList(ref zielort);
+            }
+            catch {
+                MessageBox.Show("nicht spammen");
+            }
         }
 
 
@@ -264,7 +272,6 @@ namespace WindowsFormsApp1
             Form1 mailForm = new Form1(mailBody.ToString());
             mailForm.ShowDialog();
         }
-
 
     }
             #endregion Applicaction
